@@ -62,8 +62,8 @@ Clock = function(){
 
     my.hands.second = my.paper.path(
       "M" + my.center.x + "," + my.center.y + 
-      "l0," + (-1 * (my.radius - my.frame.attr('stroke-width'))) + 
-      "z");
+      "l0," + (-1 * (my.radius - my.frame.attr('stroke-width')))
+      );
 
     my.hands.minute = my.paper.path(
       "M" + (my.center.x - 10) + "," + my.center.y + 
@@ -77,7 +77,7 @@ Clock = function(){
     my.center_post = my.paper.circle(
       my.center.x,
       my.center.y,
-      my.radius * 0.08
+      my.radius * 0.09
     ).attr({
       'fill'          : '#aa4',
       'stroke'        : 'none'
