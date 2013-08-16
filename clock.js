@@ -30,10 +30,17 @@ Clock = function(){
     });
 
     // Numbers
-    for (var n = 0; n < 12; n++){
+    for (var n = 1; n <= 12; n++){
+      // Create the number at the 12 o'clock position..
       var x = my.center.x;
       var y = my.center.y - my.radius + my.frame.attr('stroke-width');
-      my.paper.text(x, y, n.toString()).attr({ 'font-size' : 24 });
+      my.paper.text( x, y, n.toString()
+    )
+      // ..move it around to its proper place..
+      .transform("r" + (360 / 12 * n) + "," + my.center.x + "," + my.center.y)
+
+      // ..and twiddle its appearance
+      .attr({ 'font-size' : 24 });
     };
 
     // Hands
