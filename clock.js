@@ -49,29 +49,17 @@ Clock = function(){
           'font-size' : font_size,
           //'font-family': "Marcellus SC"
           //'font-family': "Elsie Swash Caps"
-          'font-family': "Purple Purse"
+          //'font-family': "Purple Purse"
+          'font-family'  : "sans-serif"
         });
     }
 
     // Draw hands
     my.hands = {
-      second: null,
-      minute: null,
-      hour:   null
+      second: draw_hand(0, 1),
+      minute: draw_hand(20, 1),
+      hour:   draw_hand(30, 0.6)
     };
-
-    my.hands.second = my.paper.path(
-      "M" + my.center.x + "," + my.center.y + 
-      "l0," + (-1 * (my.radius - my.frame.attr('stroke-width')))
-      );
-
-    my.hands.minute = my.paper.path(
-      "M" + (my.center.x - 10) + "," + my.center.y + 
-      "l10," + (-1 * (my.radius - my.frame.attr('stroke-width')))  + 
-      "l10," + (my.radius - my.frame.attr('stroke-width'))   +
-      "z").attr({
-        fill: "#000"
-      });
 
     // Center post
     my.center_post = my.paper.circle(
@@ -93,6 +81,23 @@ Clock = function(){
   };
 
   my.stop = function(){
+  };
+
+  // Private
+
+  draw_hand = function(base_width, length) {
+    // base_width: how wide (in pixels) the hand is at the center of the clock
+    // length: hand length as a ratio of the clock radius (in the range 0..1)
+
+    var half_width = base_width / 2;
+    return my.paper.path(
+      "M" + (my.center.x - half_width) + "," + my.center.y +
+      "l" + half_width + "," + (-1 * length * (my.radius - my.frame.attr('stroke-width'))) +
+      "l" + half_width + "," + length * (my.radius - my.frame.attr('stroke-width')) +
+      "z"
+    ).attr({
+      fill: "#000"
+    });
   };
 
 };
