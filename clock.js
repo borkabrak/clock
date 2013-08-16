@@ -60,8 +60,8 @@ Clock = function(){
           //'font-family': "Marcellus SC"
           //'font-family': "Elsie Swash Caps"
           'font-family': "Purple Purse"
-        }
-      );
+        });
+    }
 
     // Draw hands
     my.hands = {
