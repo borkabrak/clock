@@ -61,7 +61,26 @@ Clock = function(){
 
     };
 
-    // Hands
+    // Draw hands
+    my.hands = {
+      second: null,
+      minute: null,
+      hour:   null
+    };
+
+    my.hands.second = my.paper.path(
+      "M" + my.center.x + "," + my.center.y + 
+      "l0," + (-1 * (my.radius - my.frame.attr('stroke-width'))) + 
+      "z");
+
+    my.hands.minute = my.paper.path(
+      "M" + (my.center.x - 10) + "," + my.center.y + 
+      "l10," + (-1 * (my.radius - my.frame.attr('stroke-width')))  + 
+      "l10," + (my.radius - my.frame.attr('stroke-width'))   +
+      "z").attr({
+        fill: "#000"
+      });
+
   };
 
   my.set_time = function(time){
