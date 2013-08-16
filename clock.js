@@ -26,7 +26,7 @@ Clock = function(){
     .attr({
       'stroke-width'  : 30,
       'stroke'        : '#630', 
-      'fill'          : '#dde'
+      'fill'          : 'r(0.25, 0.25)#fff-#668'
     });
 
     // Center post
