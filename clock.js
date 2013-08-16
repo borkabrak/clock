@@ -29,16 +29,6 @@ Clock = function(){
       'fill'          : 'r(0.25, 0.25)#fff-#668'
     });
 
-    // Center post
-    my.center_post = my.paper.circle(
-      my.center.x,
-      my.center.y,
-      my.radius * 0.08
-    ).attr({
-      'fill'          : '#cb0',
-      'stroke'        : 'none'
-    });
-
     // Numbers
     for (var n = 1; n <= 12; n++){
 
@@ -82,6 +72,17 @@ Clock = function(){
       "z").attr({
         fill: "#000"
       });
+
+    // Center post
+    my.center_post = my.paper.circle(
+      my.center.x,
+      my.center.y,
+      my.radius * 0.08
+    ).attr({
+      'fill'          : '#aa4',
+      'stroke'        : 'none'
+    });
+
 
   };
 
