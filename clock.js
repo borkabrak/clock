@@ -25,24 +25,39 @@ Clock = function(){
     my.frame = my.paper.circle(my.center.x, my.center.y, my.radius)
     .attr({
       'stroke-width'  : 30,
-      'stroke'        : '#963', 
+      'stroke'        : '#630', 
       'fill'          : '#dde'
+    });
+
+    // Center post
+    my.center_post = my.paper.circle(
+      my.center.x,
+      my.center.y,
+      my.radius * 0.08
+    ).attr({
+      'fill'          : '#cb0',
+      'stroke'        : 'none'
     });
 
     // Numbers
     for (var n = 1; n <= 12; n++){
-      // Create the number at the 12 o'clock position..
       var x = my.center.x;
       var y = my.center.y - my.radius + my.frame.attr('stroke-width');
       var degrees = 360 / 12 * n;
 
+      // Create the number (initially at the 12 o'clock position)
       my.paper.text( x, y, n.toString())
 
-      // ..move it around to its proper place.. (and keep it upright)
+      // Move it around to its proper place.. (and keep it upright)
       .transform("r" + degrees + "," + my.center.x + "," + my.center.y + "r-" + degrees)
 
-      // ..and twiddle its appearance
-      .attr({ 'font-size' : 24 });
+      // And twiddle its appearance
+      .attr(
+        { 
+          'font-size' : 24,
+          'font-family': "Deja Vu Sans"
+        }
+      );
 
     };
 
