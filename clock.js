@@ -34,7 +34,7 @@ Clock = function(){
     my.frame = my.paper.circle(my.center.x, my.center.y, my.radius)
     .attr({
       'stroke-width'  : 30,
-      'stroke'        : '#630', 
+      'stroke'        : '#302800', 
       'fill'          : 'r(' + light_source.x + ',' + light_source.y + ')#fff-#668'
     });
 
@@ -47,7 +47,7 @@ Clock = function(){
       var degrees = 360 / 12 * n;
 
       // Create the number (initially at the 12 o'clock position)
-      my.paper.text( x, y, n.toString())
+      my.paper.text( x, y, roman[n])
 
       // Move it around to its proper place.. (and keep it upright)
       .transform("r" + degrees + "," + my.center.x + "," + my.center.y + "r-" + degrees)
@@ -67,7 +67,7 @@ Clock = function(){
     my.hands = {
       second: draw_hand(0, 1),
       minute: draw_hand(20, 1),
-      hour:   draw_hand(30, 0.6)
+      hour:   draw_hand(30, 0.7)
     };
 
     // Center post
@@ -79,7 +79,6 @@ Clock = function(){
       'fill'          : 'r(' + light_source.x + ',' + light_source.y + ')#fff-#aa4',
       'stroke'        : 'none'
     });
-
 
   };
 
@@ -139,9 +138,14 @@ Clock = function(){
       "l" + half_width + "," + length * (my.radius - my.frame.attr('stroke-width')) +
       "z"
     ).attr({
-      fill:   "#000",
-      stroke: "#888",
+      fill:   "90-#888-#000",
+      stroke: "#000"
     });
   };
+
+  // Roman numerals
+  var roman = [ null, "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" ];
+
+    
 
 };
