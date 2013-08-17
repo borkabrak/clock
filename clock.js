@@ -24,12 +24,18 @@ Clock = function(){
 
   my.draw = function(){
 
+    // Light source direction (for radial gradients)
+    var light_source = {
+      x: 0.25,
+      y: 0.25
+    };
+
     // Frame
     my.frame = my.paper.circle(my.center.x, my.center.y, my.radius)
     .attr({
       'stroke-width'  : 30,
       'stroke'        : '#630', 
-      'fill'          : 'r(0.25, 0.25)#fff-#668'
+      'fill'          : 'r(' + light_source.x + ',' + light_source.y + ')#fff-#668'
     });
 
     // Numbers
@@ -70,7 +76,7 @@ Clock = function(){
       my.center.y,
       my.radius * 0.09
     ).attr({
-      'fill'          : '#aa4',
+      'fill'          : 'r(' + light_source.x + ',' + light_source.y + ')#fff-#aa4',
       'stroke'        : 'none'
     });
 
