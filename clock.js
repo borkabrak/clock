@@ -1,17 +1,19 @@
 $(function(){
+
   clock = new Clock();
   clock.draw();
   clock.start();
-});
 
-var width = 500;
-var height = 500;
+});
 
 Clock = function(){
 
   var my = this;
-
-  my.paper = new Raphael(document.getElementById("clock"), width, height);
+  
+  // Size of the square canvas is the smaller of the document's width and
+  // height (so it fits)
+  var size = (document.width >= document.height ? document.height : document.width) * 0.8;
+  my.paper = new Raphael(document.getElementById("clock"), size, size);
 
   my.center = {
     x: (my.paper.width / 2),
