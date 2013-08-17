@@ -59,7 +59,7 @@ Clock = function(){
           //'font-family': "Marcellus SC"
           //'font-family': "Elsie Swash Caps"
           //'font-family': "Purple Purse"
-          'font-family'  : "sans-serif"
+          'font-family'  : "script"
         });
     }
 
