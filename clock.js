@@ -1,6 +1,7 @@
 $(function(){
   clock = new Clock();
   clock.draw();
+  clock.start();
 });
 
 var width = 500;
@@ -74,16 +75,50 @@ Clock = function(){
 
   };
 
-  my.set_time = function(time){
+  my.set_time = function(time, duration){
+    // Set the clock to a particular time
+    //
+    //  time: defaults to the current time
+    //  duration: milliseconds for animation.  Default 0.
+    time = moment(time);
+    duration = duration || 0;
+    rotate_to(my.hands.hour, (time.hour() % 12) * 5, duration);
+    rotate_to(my.hands.minute, time.minute(), duration);
+    rotate_to(my.hands.second, time.second(), duration);
   };
 
   my.start = function(){
+    my.interval_id = setInterval(function(animation_speed){
+      clock.set_time(moment(), animation_speed);
+    }, 
+    500,  // Update every half-second    
+    100   // animation speed (param to the function)
+    );
   };
 
   my.stop = function(){
+    if ( typeof my.interval_id !== "undefined" ){
+      clearInterval(my.interval_id);
+    }
   };
 
   // Private
+
+  rotate_to = function(hand, clock_position, duration) {
+    // rotate hand to a point on the clock
+    //
+    //  hand - raphael path representing the hand
+    //  clock_position - integer in 1..60
+    //  duration - Optional milliseconds for animation.  Defaults to 0.
+
+    hand.animate( 
+      {
+        transform: "R" + (clock_position * 6) + "," + my.center.x + "," + my.center.y 
+      }, 
+      duration || 0
+    );
+
+  };
 
   draw_hand = function(base_width, length) {
     // base_width: how wide (in pixels) the hand is at the center of the clock
