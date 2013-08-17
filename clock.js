@@ -139,7 +139,8 @@ Clock = function(){
       "l" + half_width + "," + length * (my.radius - my.frame.attr('stroke-width')) +
       "z"
     ).attr({
-      fill: "#000"
+      fill:   "#000",
+      stroke: "#888",
     });
   };
 
