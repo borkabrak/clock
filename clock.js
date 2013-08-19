@@ -43,7 +43,7 @@ Clock = function(){
 
       var font_size = 48;
       var x = my.center.x;
-      var y = my.center.y - my.radius + my.frame.attr('stroke-width') + font_size / 3;
+      var y = my.center.y - my.radius + my.frame.attr('stroke-width') + font_size / 2;
       var degrees = 360 / 12 * n;
 
       // Create the number (initially at the 12 o'clock position)
