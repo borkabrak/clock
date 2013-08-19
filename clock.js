@@ -89,7 +89,7 @@ Clock = function(){
     //  duration: milliseconds for animation.  Default 0.
     time = moment(time);
     duration = duration || 0;
-    rotate_to(my.hands.hour, (time.hour() % 12) * 5, duration);
+    rotate_to(my.hands.hour, ( (time.hour() % 12) * 5 ) + ( time.minute() / 12 ), duration);
     rotate_to(my.hands.minute, time.minute(), duration);
     rotate_to(my.hands.second, time.second(), duration);
   };
