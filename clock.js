@@ -47,7 +47,7 @@ Clock = function(){
       var degrees = 360 / 12 * n;
 
       // Create the number (initially at the 12 o'clock position)
-      my.paper.text( x, y, roman[n] )
+      my.paper.text( x, y, roman_numerals[n] )
 
       // Move it around to its proper place.. (and keep it upright)
       .transform("r" + degrees + "," + my.center.x + "," + my.center.y + "r-" + degrees)
@@ -142,8 +142,6 @@ Clock = function(){
   };
 
   // Roman numerals
-  var roman = [ null, "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" ];
-
-    
+  var roman_numerals = [ null, "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" ];
 
 };
