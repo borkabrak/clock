@@ -34,7 +34,7 @@ Clock = function(){
     my.frame = my.paper.circle(my.center.x, my.center.y, my.radius)
     .attr({
       'stroke-width'  : 30,
-      'stroke'        : '#302800', 
+      'stroke'        : 'rgba(90, 90, 100, 0.9)', 
       'fill'          : 'r(' + light_source.x + ',' + light_source.y + ')#fff-#668'
     });
 
