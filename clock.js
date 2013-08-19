@@ -99,7 +99,7 @@ Clock = function(){
       clock.set_time(moment(), animation_speed);
     }, 
     500,  // Update every half-second    
-    100   // animation speed (param to the function)
+    250   // animation speed (param to the function)
     );
   };
 
@@ -122,7 +122,8 @@ Clock = function(){
       {
         transform: "R" + (clock_position * 6) + "," + my.center.x + "," + my.center.y 
       }, 
-      duration || 0
+      duration || 0,
+      "bounce"
     );
 
   };
