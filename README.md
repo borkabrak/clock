@@ -1,11 +1,11 @@
 A Clock in Javascript/Raphael.  Just for fun.
 
-Bugs:
+Bugs/TODO:
 ==============================================================================
 
 * When rolling over past twelve, the hands move counter-clockwise.
 
-* Hour hand only has a resolution of one full hour.
+* Redraw the clock when the window resizes.
 
 Dependencies:
 ==============================================================================
