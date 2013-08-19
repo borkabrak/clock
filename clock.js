@@ -1,26 +1,31 @@
 $(function(){
 
   clock = new Clock();
-  clock.draw();
-  clock.start();
+  clock.init();
 
 });
 
 Clock = function(){
 
   var my = this;
-  
-  // Size of the square canvas is the smaller of the document's width and
-  // height (so it fits)
-  var size = (document.width >= document.height ? document.height : document.width) * 0.8;
-  my.paper = new Raphael(document.getElementById("clock"), size, size);
+ 
+  my.init = function(){
+    // Size of the square canvas is the smaller of the document's width and
+    // height (so it fits)
+    var size = (document.width >= document.height ? document.height : document.width) * 0.8;
+    my.paper = my.paper || new Raphael(document.getElementById("clock"), size, size);
 
-  my.center = {
-    x: (my.paper.width / 2),
-    y: (my.paper.height / 2)
+    my.center = {
+        x: (my.paper.width / 2),
+        y: (my.paper.height / 2)
+    };
+
+    my.radius = (my.paper.width >= my.paper.height ? my.paper.height : my.paper.width) / 2 - 20;
+
+    my.draw();
+    my.start();
+
   };
-
-  my.radius = (my.paper.width >= my.paper.height ? my.paper.height : my.paper.width) / 2 - 20;
 
   my.draw = function(){
 
