@@ -56,9 +56,6 @@ Clock = function(){
       .attr(
         { 
           'font-size' : font_size,
-          //'font-family': "Marcellus SC"
-          //'font-family': "Elsie Swash Caps"
-          //'font-family': "Purple Purse"
           'font-family'  : "script"
         });
     }
