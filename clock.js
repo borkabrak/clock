@@ -67,9 +67,9 @@ Clock = function(){
 
     // Draw hands
     my.hands = {
-      second: draw_hand(0, 1),
+      hour:   draw_hand(30, 0.7),
       minute: draw_hand(20, 1),
-      hour:   draw_hand(30, 0.7)
+      second: draw_hand(0, 1),
     };
 
     // Center post
