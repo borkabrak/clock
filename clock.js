@@ -34,16 +34,16 @@ Clock = function(){
     my.frame = my.paper.circle(my.center.x, my.center.y, my.radius)
     .attr({
       'stroke-width'  : 30,
-      'stroke'        : 'rgba(90, 90, 100, 0.9)', 
+      'stroke'        : '#404840',
       'fill'          : 'r(' + light_source.x + ',' + light_source.y + ')#fff-#668'
     });
 
     // Numbers
     for (var n = 1; n <= 12; n++){
 
-      var font_size = 48;
+      var font_size = my.radius / 8;
       var x = my.center.x;
-      var y = my.center.y - my.radius + my.frame.attr('stroke-width') + font_size / 2;
+      var y = my.center.y - my.radius + my.frame.attr('stroke-width') + font_size * 0.7;
       var degrees = 360 / 12 * n;
 
       // Create the number (initially at the 12 o'clock position)
@@ -87,7 +87,7 @@ Clock = function(){
     time = moment(time);
     duration = duration || 0;
     rotate_to(my.hands.hour, ( (time.hour() % 12) * 5 ) + ( time.minute() / 12 ), duration);
-    rotate_to(my.hands.minute, time.minute(), duration);
+    rotate_to(my.hands.minute, time.minute() + (time.second() / 60), duration);
     rotate_to(my.hands.second, time.second(), duration);
   };
 
@@ -136,7 +136,7 @@ Clock = function(){
       "l" + half_width + "," + length * (my.radius - my.frame.attr('stroke-width')) +
       "z"
     ).attr({
-      fill:   "90-#888-#000",
+      fill:   "90-#898-#000",
       stroke: "#000"
     });
   };
