@@ -47,7 +47,7 @@ Clock = function(){
       var degrees = 360 / 12 * n;
 
       // Create the number (initially at the 12 o'clock position)
-      my.paper.text( x, y, roman[n])
+      my.paper.text( x, y, roman[n] )
 
       // Move it around to its proper place.. (and keep it upright)
       .transform("r" + degrees + "," + my.center.x + "," + my.center.y + "r-" + degrees)
@@ -115,7 +115,7 @@ Clock = function(){
     // rotate hand to a point on the clock
     //
     //  hand - raphael path representing the hand
-    //  clock_position - integer in 1..60
+    //  clock_position - number in range 1..60
     //  duration - Optional milliseconds for animation.  Defaults to 0.
 
     hand.animate( 
