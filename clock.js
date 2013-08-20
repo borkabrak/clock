@@ -97,7 +97,7 @@ Clock = function( container ){
 
   my.start = function(){
     my.interval_id = setInterval(function(animation_speed){
-        clock.set_time(moment(), animation_speed);
+        my.set_time(moment(), animation_speed);
       }, 
       500,  // Update every half-second    
       250   // animation speed (param to the function)
