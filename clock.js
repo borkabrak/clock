@@ -46,7 +46,7 @@ Clock = function(){
     // Numbers
     for (var n = 1; n <= 12; n++){
 
-      var font_size = my.radius / 8;
+      var font_size = my.radius / 6;
       var x = my.center.x;
       var y = my.center.y - my.radius + my.frame.attr('stroke-width') + font_size * 0.7;
       var degrees = 360 / 12 * n;
