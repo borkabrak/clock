@@ -66,9 +66,9 @@ Clock = function( container ){
 
     // Draw hands
     my.hands = {
-      hour:   draw_hand(0.07, 0.7, 'tear'),
-      minute: draw_hand(0.05, 1, 'tear'),
-      second: draw_hand(0, 1, 'tear'),
+      hour:   draw_hand(0.07, 0.7, 'diamond'),
+      minute: draw_hand(0.05, 1.0, 'diamond'),
+      second: draw_hand(0.00, 1.0, 'diamond'),
     };
 
     // Center post
@@ -153,6 +153,7 @@ Clock = function( container ){
         });
 
     } else if ( style === 'tear' ) {
+        // A bit more rounded than a simple triangle
         return my.paper.path(
           "M" + my.center.x  + "," + my.center.y +
           "q" + -half_width + ",0,0," + -length +
@@ -163,6 +164,24 @@ Clock = function( container ){
           fill:   "90-#898-#000",
           stroke: "#444"
 
+        });
+
+    } else if ( style === 'diamond' ) {
+        // A squat diamond shape
+
+        // The widest part of the diamond (0..1)
+        var wide_part = 0.40;
+
+        return my.paper.path(
+          "M" +  my.center.x + "," + my.center.y +
+          "l" + -half_width  + "," + (-length * wide_part) +
+          "l" +  half_width  + "," + (-length * (1 - wide_part)) +
+          "l" +  half_width  + "," + (length  * (1 - wide_part)) +
+          "z"
+
+        ).attr({
+          fill:   "90-#898-#000",
+          stroke: "#444"
         });
 
     } else {
