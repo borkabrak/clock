@@ -37,7 +37,7 @@ Clock = function( container ){
     // Frame
     my.frame = my.paper.circle(my.center.x, my.center.y, my.radius)
     .attr({
-      'stroke-width'  : 30,
+      'stroke-width'  : my.radius * 0.1,
       'stroke'        : '#404840',
       'fill'          : 'r(' + light_source.x + ',' + light_source.y + ')#fff-#668'
     });
@@ -66,8 +66,8 @@ Clock = function( container ){
 
     // Draw hands
     my.hands = {
-      hour:   draw_hand(30, 0.7),
-      minute: draw_hand(20, 1),
+      hour:   draw_hand(0.07, 0.7),
+      minute: draw_hand(0.05, 1),
       second: draw_hand(0, 1),
     };
 
@@ -97,10 +97,10 @@ Clock = function( container ){
 
   my.start = function(){
     my.interval_id = setInterval(function(animation_speed){
-      clock.set_time(moment(), animation_speed);
-    }, 
-    500,  // Update every half-second    
-    250   // animation speed (param to the function)
+        clock.set_time(moment(), animation_speed);
+      }, 
+      500,  // Update every half-second    
+      250   // animation speed (param to the function)
     );
   };
 
@@ -129,22 +129,23 @@ Clock = function( container ){
 
   };
 
-  draw_hand = function(base_width, length) {
-    // base_width: how wide (in pixels) the hand is at the center of the clock
-    // length: hand length as a ratio of the clock radius (in the range 0..1)
+  draw_hand = function(width, length) {
+    // width: how wide the hand is at the center of the clock 
+    // length: hand length 
+    //
+    //  Both of these are proportional to the radius of the clock.
 
-    var half_width = base_width / 2;
+    var half_width = my.radius * width;
     return my.paper.path(
-      "M" + (my.center.x - half_width) + "," + my.center.y +
+      "M" + ( my.center.x - half_width ) + "," + my.center.y +
       "l" + half_width + "," + (-1 * length * (my.radius - my.frame.attr('stroke-width'))) +
       "l" + half_width + "," + length * (my.radius - my.frame.attr('stroke-width')) +
       "z"
     ).attr({
       fill:   "90-#898-#000",
-      stroke: "#000"
+      stroke: "#444"
     });
   };
-
   // Roman numerals
   var roman_numerals = [ null, "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" ];
 
