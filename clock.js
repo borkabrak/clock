@@ -43,7 +43,7 @@ Clock = function( container ){
     });
 
     // Numbers
-    for (var n = 1; n <= 12; n++){
+    for (var n = 1; n <= 12; n++) {
 
       var font_size = my.radius / 6;
       var x = my.center.x;
@@ -62,7 +62,7 @@ Clock = function( container ){
           'font-size' : font_size,
           'font-family'  : "script"
         });
-    }
+    };
 
     // Draw hands
     my.hands = {
@@ -137,58 +137,42 @@ Clock = function( container ){
     var half_width = my.radius * width_ratio;
     var length = length_ratio * (my.radius - my.frame.attr('stroke-width'));
     var style = style || 'simple';
+    var pathstring = "";
 
-    // simple triangle shape
     if ( style === 'simple' ) {
-        return my.paper.path(
-          "M" + ( my.center.x - half_width ) + "," + my.center.y +
+        // simple triangle shape
+          pathstring = "M" + ( my.center.x - half_width ) + "," + my.center.y +
           "l" + half_width + "," + -length +
           "l" + half_width + "," + length +
           "z"
 
-        ).attr({
-          fill:   "90-#898-#000",
-          stroke: "#444"
-
-        });
-
     } else if ( style === 'tear' ) {
         // A bit more rounded than a simple triangle
-        return my.paper.path(
-          "M" + my.center.x  + "," + my.center.y +
+          pathstring = "M" + my.center.x  + "," + my.center.y +
           "q" + -half_width + ",0,0," + -length +
           "q" + half_width + "," + length + ",0," + length +
           "z"
 
-        ).attr({
-          fill:   "90-#898-#000",
-          stroke: "#444"
-
-        });
-
     } else if ( style === 'diamond' ) {
         // A squat diamond shape
-
-        // The widest part of the diamond (0..1)
-        var wide_part = 0.40;
-
-        return my.paper.path(
-          "M" +  my.center.x + "," + my.center.y +
+        var wide_part = 0.40; // The widest part of the diamond (0..1)
+        pathstring = "M" +  my.center.x + "," + my.center.y +
           "l" + -half_width  + "," + (-length * wide_part) +
           "l" +  half_width  + "," + (-length * (1 - wide_part)) +
           "l" +  half_width  + "," + (length  * (1 - wide_part)) +
-          "z"
-
-        ).attr({
-          fill:   "90-#898-#000",
-          stroke: "#444"
-        });
+          "z";
 
     } else {
-        console.log("Unknown style given for drawing hands: '%s'");
-        return null;
-    }
+        console.log("Unknown style given for drawing hands: '%s'", style);
+    };
+
+    return my.paper.path(pathstring).attr({
+        fill:   "90-#898-#000",
+        stroke: "#444"
+    });
+
   };
+
   // Roman numerals
   var roman_numerals = [ null, "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" ];
 
