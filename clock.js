@@ -66,9 +66,9 @@ Clock = function( container ){
 
     // Draw hands
     my.hands = {
-      hour:   draw_hand(0.07, 0.7),
-      minute: draw_hand(0.05, 1),
-      second: draw_hand(0, 1),
+      hour:   draw_hand(0.07, 0.7, 'tear'),
+      minute: draw_hand(0.05, 1, 'tear'),
+      second: draw_hand(0, 1, 'tear'),
     };
 
     // Center post
@@ -139,27 +139,30 @@ Clock = function( container ){
     var style = style || 'simple';
 
     // simple triangle shape
-    if ( style === 'simple' ){
+    if ( style === 'simple' ) {
         return my.paper.path(
           "M" + ( my.center.x - half_width ) + "," + my.center.y +
-          "l" + half_width + "," + (-1 * length ) +
+          "l" + half_width + "," + -length +
           "l" + half_width + "," + length +
           "z"
+
         ).attr({
           fill:   "90-#898-#000",
           stroke: "#444"
+
         });
 
     } else if ( style === 'tear' ) {
         return my.paper.path(
-          "M" + ( my.center.x - half_width ) + "," + my.center.y +
-          "l0," + ( length / 2 ) +
-          "l" + ( half_width * 2 ) + ",0" +
-          "l0," + ( -1 * length / 2 ) +
+          "M" + my.center.x  + "," + my.center.y +
+          "q" + -half_width + ",0,0," + -length +
+          "q" + half_width + "," + length + ",0," + length +
           "z"
+
         ).attr({
           fill:   "90-#898-#000",
           stroke: "#444"
+
         });
 
     } else {
