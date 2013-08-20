@@ -129,22 +129,43 @@ Clock = function( container ){
 
   };
 
-  draw_hand = function(width, length) {
-    // width: how wide the hand is at the center of the clock 
-    // length: hand length 
-    //
-    //  Both of these are proportional to the radius of the clock.
+  draw_hand = function(width_ratio, length_ratio, style) {
+    // width_ratio: hand width (compared to radius)
+    // length_ratio: hand length (compared to radius)
+    // style: optional hand style.  Defaults to 'simple', which draws triangular hands.
+    
+    var half_width = my.radius * width_ratio;
+    var length = length_ratio * (my.radius - my.frame.attr('stroke-width'));
+    var style = style || 'simple';
 
-    var half_width = my.radius * width;
-    return my.paper.path(
-      "M" + ( my.center.x - half_width ) + "," + my.center.y +
-      "l" + half_width + "," + (-1 * length * (my.radius - my.frame.attr('stroke-width'))) +
-      "l" + half_width + "," + length * (my.radius - my.frame.attr('stroke-width')) +
-      "z"
-    ).attr({
-      fill:   "90-#898-#000",
-      stroke: "#444"
-    });
+    // simple triangle shape
+    if ( style === 'simple' ){
+        return my.paper.path(
+          "M" + ( my.center.x - half_width ) + "," + my.center.y +
+          "l" + half_width + "," + (-1 * length ) +
+          "l" + half_width + "," + length +
+          "z"
+        ).attr({
+          fill:   "90-#898-#000",
+          stroke: "#444"
+        });
+
+    } else if ( style === 'tear' ) {
+        return my.paper.path(
+          "M" + ( my.center.x - half_width ) + "," + my.center.y +
+          "l0," + ( length / 2 ) +
+          "l" + ( half_width * 2 ) + ",0" +
+          "l0," + ( -1 * length / 2 ) +
+          "z"
+        ).attr({
+          fill:   "90-#898-#000",
+          stroke: "#444"
+        });
+
+    } else {
+        console.log("Unknown style given for drawing hands: '%s'");
+        return null;
+    }
   };
   // Roman numerals
   var roman_numerals = [ null, "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" ];
