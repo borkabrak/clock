@@ -1,19 +1,18 @@
 $(function(){
 
-  clock = new Clock();
+  clock = new Clock(document.getElementById("clock"));
   clock.init();
 
 });
 
-Clock = function(){
+Clock = function( container ){
 
   var my = this;
  
   my.init = function(){
-    // Size of the square canvas is the smaller of the document's width and
-    // height (so it fits)
+    // Make the canvas a square that fits in the window
     var size = (document.width >= document.height ? document.height : document.width) * 0.8;
-    my.paper = my.paper || new Raphael(document.getElementById("clock"), size, size);
+    my.paper = my.paper || new Raphael(container , size, size);
 
     my.center = {
         x: (my.paper.width / 2),
