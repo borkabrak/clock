@@ -61,14 +61,10 @@ Clock = function( container ) {
 
   // Draw hands
   my.hands = {
-    hour: new Hand(clock, 0.07, 0.7, 'diamond'),
-    minute: new Hand(clock, 0.05, 1.0, 'diamond'),
-    second: new Hand(clock, 0.00, 1.0, 'diamond')
+    second: new Hand(my, 0.00, 1.0, 'diamond'),
+    hour: new Hand(my, 0.07, 0.7, 'diamond'),
+    minute: new Hand(my, 0.05, 1.0, 'diamond'),
   };
-
-  my.hands.hour.draw();
-  my.hands.minute.draw();
-  my.hands.second.draw();
 
   // Center post
   my.center_post = my.paper.circle(
@@ -114,64 +110,62 @@ Clock = function( container ) {
 
 Hand = function( clock, width_ratio, length_ratio, style ) {
   // clock: Clock() object to which this hand belongs.
-  // width_ratio: hand width (compared to radius)
-  // length_ratio: hand length (compared to radius)
+  // width_ratio: hand width (0..1 * radius)
+  // length_ratio: hand length (0..1 * radius)
   // style: optional hand style.  Defaults to 'simple', which draws triangular hands.
   my = this; 
 
   var half_width = clock.radius * width_ratio;
   var length = length_ratio * (clock.radius - clock.frame.attr('stroke-width'));
   style = style || 'simple';
+  my.clock = clock;
 
-  my.draw = function() {
-    var pathstring = "";
-    if ( style === 'simple' ) {
-        // simple triangle shape
-          pathstring = "M" + ( my.clock.center.x - half_width ) + "," + my.clock.center.y +
-          "l" + half_width + "," + -length +
-          "l" + half_width + "," + length +
-          "z"
+  var pathstring = "";
+  if ( style === 'simple' ) {
+      // simple triangle shape
+        pathstring = "M" + ( my.clock.center.x - half_width ) + "," + my.clock.center.y +
+        "l" + half_width + "," + -length +
+        "l" + half_width + "," + length +
+        "z"
 
-    } else if ( style === 'tear' ) {
-        // A bit more rounded than a simple triangle
-          pathstring = "M" + my.clock.center.x  + "," + my.clock.center.y +
-          "q" + -half_width + ",0,0," + -length +
-          "q" + half_width + "," + length + ",0," + length +
-          "z"
+  } else if ( style === 'tear' ) {
+      // A bit more rounded than a simple triangle
+        pathstring = "M" + my.clock.center.x  + "," + my.clock.center.y +
+        "q" + -half_width + ",0,0," + -length +
+        "q" + half_width + "," + length + ",0," + length +
+        "z"
 
-    } else if ( style === 'diamond' ) {
-        // A squat diamond shape
-        var wide_part = 0.40; // The widest part of the diamond (0..1)
-        pathstring = "M" +  clock.center.x + "," + clock.center.y +
-          "l" + -half_width  + "," + (-length * wide_part) +
-          "l" +  half_width  + "," + (-length * (1 - wide_part)) +
-          "l" +  half_width  + "," + (length  * (1 - wide_part)) +
-          "z";
+  } else if ( style === 'diamond' ) {
+      // A squat diamond shape
+      var wide_part = 0.40; // The widest part of the diamond (0..1)
+      pathstring = "M" +  clock.center.x + "," + clock.center.y +
+        "l" + -half_width  + "," + (-length * wide_part) +
+        "l" +  half_width  + "," + (-length * (1 - wide_part)) +
+        "l" +  half_width  + "," + (length  * (1 - wide_part)) +
+        "z";
 
-    } else {
-        console.log("Unknown style given for drawing hand: '%s'", style);
-    };
-
-    my.path = clock.paper.path(pathstring).attr({
-        fill:   "90-#898-#000",
-        stroke: "#444"
-    });
+  } else {
+      console.log("Unknown style given for drawing hand: '%s'", style);
   };
 
-  my.rotate_to = function(clock_position, duration) {
-    // rotate hand to a point on the clock
-    //
-    //  clock_position - number in range 1..60
-    //  duration - Optional milliseconds for animation.  Defaults to 0.
+  my.path = my.clock.paper.path(pathstring).attr({
+      fill:   "90-#898-#000",
+      stroke: "#444"
+  });
+};
 
-    my.path.animate( 
-      {
-        transform: "R" + (clock_position * 6) + "," + clock.center.x + "," + clock.center.y 
-      }, 
-      duration || 0,
-      "bounce"
-    );
-
-  };
+Hand.prototype.rotate_to = function(clock_position, duration) {
+  // rotate hand to a point on the clock
+  //
+  //  clock_position - number in range 1..60
+  //  duration - Optional milliseconds for animation.  Defaults to 0.
+  this.path.animate( 
+    {
+      transform: "R" + (clock_position * 6) + "," + this.clock.center.x + "," + this.clock.center.y 
+    }, 
+    duration || 0,
+    "bounce"
+  );
 
 };
+
