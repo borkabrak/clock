@@ -1,6 +1,6 @@
 A Clock in Javascript/Raphael.  Just for fun.
 
-Here's a [demo](http://borkabrak.org/clock/clock.html)
+Here's a [demo](http://borkabrak.org/clock)
 
 Bugs/TODO:
 ==============================================================================
