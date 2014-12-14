@@ -1,16 +1,23 @@
 $(function(){
 
   clock = new Clock(document.getElementById("clock"), {
-    hands: "diamond",
+    hands_style: "diamond",
   }).start();
 
 });
 
 Clock = function( container, options) {
-  // settable options and defaults:
+  // container: the HTML element within which to draw the clock
   //
-  //    * hands: 'simple'
-  //    * font_size: 6
+  // options (with defaults):
+  //
+  //    * hands_style ('simple'): One of a selection of styles in which to draw
+  //      the hands.  Check Hand() constructor for values.
+  //
+  //    * font_size(6): Size of font.  Larger value is a smaller font.
+  //
+  //    * light_source (0.25, 0.25): Direction from which the light appears to come.  If
+  //      present, requires both x and y values, in range (0..1).
 
   var my = this;
   options = options || {};
@@ -30,7 +37,7 @@ Clock = function( container, options) {
   my.radius = (my.paper.width >= my.paper.height ? my.paper.height : my.paper.width) / 2 - 20;
 
   // Light source direction (for radial gradients)
-  var light_source = {
+  var light_source = options.light_source ? options.light_source : {
     x: 0.25,
     y: 0.25
   };
@@ -67,9 +74,9 @@ Clock = function( container, options) {
 
   // Draw hands
   my.hands = {
-    second: new Hand(my, 0.00, 1.0, options.hands ),
-    hour: new Hand(my, 0.07, 0.7, options.hands ),
-    minute: new Hand(my, 0.05, 1.0, options.hands ),
+    second: new Hand(my, 0.00, 1.0, options.hands_style ),
+    hour: new Hand(my, 0.07, 0.7, options.hands_style ),
+    minute: new Hand(my, 0.05, 1.0, options.hands_style ),
   };
 
   // Center post
