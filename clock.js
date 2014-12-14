@@ -1,13 +1,20 @@
 $(function(){
 
-  clock = new Clock(document.getElementById("clock"));
+  clock = new Clock(document.getElementById("clock"), {
+    hands: "diamond",
+  });
   clock.start();
 
 });
 
-Clock = function( container ) {
+Clock = function( container, options) {
+  // settable options and defaults:
+  //
+  //    * hands: 'simple'
+  //    * font_size: 6
 
   var my = this;
+  options = options || {};
 
   // Roman numerals
   var roman_numerals = [ null, "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" ];
@@ -40,7 +47,7 @@ Clock = function( container ) {
   // Numbers
   for (var n = 1; n <= 12; n++) {
 
-    var font_size = my.radius / 6;
+    var font_size = my.radius / (options.font_size || 6);
     var x = my.center.x;
     var y = my.center.y - my.radius + my.frame.attr('stroke-width') + font_size * 0.7;
     var degrees = 360 / 12 * n;
@@ -61,9 +68,9 @@ Clock = function( container ) {
 
   // Draw hands
   my.hands = {
-    second: new Hand(my, 0.00, 1.0, 'diamond'),
-    hour: new Hand(my, 0.07, 0.7, 'diamond'),
-    minute: new Hand(my, 0.05, 1.0, 'diamond'),
+    second: new Hand(my, 0.00, 1.0, options.hands ),
+    hour: new Hand(my, 0.07, 0.7, options.hands ),
+    minute: new Hand(my, 0.05, 1.0, options.hands ),
   };
 
   // Center post
@@ -107,11 +114,10 @@ Clock = function( container ) {
 
 };
 
-
 Hand = function( clock, width_ratio, length_ratio, style ) {
   // clock: Clock() object to which this hand belongs.
-  // width_ratio: hand width (0..1 * radius)
-  // length_ratio: hand length (0..1 * radius)
+  // width_ratio: width / clock radius (0..1)
+  // length_ratio: hand length to clock radius (0..1)
   // style: optional hand style.  Defaults to 'simple', which draws triangular hands.
   my = this; 
 
@@ -152,6 +158,7 @@ Hand = function( clock, width_ratio, length_ratio, style ) {
       fill:   "90-#898-#000",
       stroke: "#444"
   });
+
 };
 
 Hand.prototype.rotate_to = function(clock_position, duration) {
@@ -168,4 +175,3 @@ Hand.prototype.rotate_to = function(clock_position, duration) {
   );
 
 };
-
