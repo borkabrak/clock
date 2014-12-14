@@ -2,8 +2,7 @@ $(function(){
 
   clock = new Clock(document.getElementById("clock"), {
     hands: "diamond",
-  });
-  clock.start();
+  }).start();
 
 });
 
