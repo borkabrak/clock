@@ -29,4 +29,3 @@ Dependencies:
 
 * Raphael.js
 
--- Just some words
