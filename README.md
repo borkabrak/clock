@@ -29,3 +29,5 @@ Dependencies:
 
 * Raphael.js
 
+
+// Here's a string to use to play with git.  Cogito ergo sum.
