@@ -31,4 +31,5 @@ Dependencies:
 
 
 // Here's a string to use to play with git.  Cogito ergo sum.  I misspelled
-// that other string.  I should have called it 'Homo sum'.
+// that other string.  I should have called it 'Homo sum'.  Here, I'm CHANGING
+// the line with the correct spelling, but not adding or removing the string.
