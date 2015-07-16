@@ -181,5 +181,3 @@ Hand.prototype.rotate_to = function(clock_position, duration) {
   );
 
 };
-
-// Here's a string I'm putting in just to play with git: "Home sum."
