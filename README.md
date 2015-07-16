@@ -30,4 +30,5 @@ Dependencies:
 * Raphael.js
 
 
-// Here's a string to use to play with git.  Cogito ergo sum.
+// Here's a string to use to play with git.  Cogito ergo sum.  I misspelled
+// that other string.  I should have called it 'Homo sum'.
