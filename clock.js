@@ -20,10 +20,19 @@ Clock = function( container, options) {
   //      present, requires both x and y values, in range (0..1).
 
   var my = this;
-  options = options || {};
 
-  // Roman numerals
-  var roman_numerals = [ null, "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" ];
+  // Set option defaults
+  options = Object.assign({
+    numerals: "roman",
+  },
+  options);
+
+  var numeral_sets = {
+    "roman" : [ null, "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",  "XI", "XII" ],
+    "arabic": [ null, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" ]
+  };
+  options.numerals = numeral_sets[options.numerals];
+  
 
   // Make the canvas a square that fits in the window
   var size = (document.width >= document.height ? document.height : document.width) * 0.8;
@@ -59,7 +68,7 @@ Clock = function( container, options) {
     var degrees = 360 / 12 * n;
 
     // Create the number (initially at the 12 o'clock position)
-    my.paper.text( x, y, roman_numerals[n] )
+    my.paper.text( x, y, options.numerals[n] )
 
     // Move it around to its proper place.. (and keep it upright)
     .transform("r" + degrees + "," + my.center.x + "," + my.center.y + "r-" + degrees)
