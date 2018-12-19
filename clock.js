@@ -1,10 +1,10 @@
-$(function(){
+window.onload = function(){
 
   clock = new Clock(document.getElementById("clock"), {
     hands_style: "diamond",
   }).start();
 
-});
+};
 
 Clock = function( container, options) {
   // container: the HTML element within which to draw the clock
