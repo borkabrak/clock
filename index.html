@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <title>Clock</title>
-    <script type="text/javascript" src="/script/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="/script/raphael/raphael.js"></script>
     <script type="text/javascript" src="/script/moment/moment.js"></script>
     <script type="text/javascript" src="clock.js"></script>
@@ -13,4 +12,11 @@
 <h1>Clock</h1>
 <div id="clock">
 </body>
+<script>
+
+  new Clock(document.getElementById("clock"), {
+    hands_style: "diamond",
+  }).start();
+
+</script>
 </html>
