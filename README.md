@@ -23,6 +23,10 @@ The Clock() constructor takes the following parameters:
 Bugs/TODO:
 ==============================================================================
 
+* Change the way Raphael is sourced so that, for example, when I use the clock
+  repo as a submodule for my project showcase page, it sources it correctly.
+  To see this in action, check out http://borkabrak.github.io/clock/
+
 * When rolling over past twelve, the hands move counter-clockwise from :59 to
   :00
 
