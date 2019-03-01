@@ -12,7 +12,13 @@ class Clock {
     //    * light_source (0.25, 0.25): Direction from which the light appears to come.  If
     //      present, requires both x and y values, in range (0..1).
 
+    if (typeof container === "string") {
+      container = document.querySelector(container);
+    }
 
+    if (! container instanceof HTMLDivElement) {
+      console.error("Unknown container: %o", container);
+    };
     /*******************************************************************/
     // Default option settings, over which declared values are merged.
     /*******************************************************************/
